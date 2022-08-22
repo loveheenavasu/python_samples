@@ -45,14 +45,7 @@ def login(request):
 def profile(request):
     if request.user.is_authenticated:
         pro=Product.objects.all()
-        if request.method=="POST":
-            obj=ProForm(request.POST)
-            if obj.is_valid():
-                obj.save()
-        else:
-            obj=ProForm()
-
-        return render(request,"profile.html",{'pro':pro,'obj':obj})
+        return render(request,"profile.html",{'pro':pro})
     else:
         return redirect("login")
 
@@ -60,7 +53,6 @@ def logout(request):
     django_logout(request)
     return redirect("login")
 
-def signup(request):
-    return render(request,"signup.html") 
+
 
 
